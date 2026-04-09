@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arya Hulloli | Software & AI Engineer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy: #0a1628;
+      --navy-mid: #132040;
+      --navy-light: #1e3a5f;
+      --accent: #2563eb;
+      --accent-light: #3b82f6;
+      --text-light: #e2e8f0;
+      --text-muted: #94a3b8;
+      --white: #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--navy);
+      color: var(--text-light);
+      scroll-behavior: smooth;
+    }
+
+    /* ── Navbar ── */
+    .navbar {
+      background-color: rgba(10, 22, 40, 0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(37, 99, 235, 0.2);
+      padding: 1rem 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      transition: box-shadow 0.3s;
+    }
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.4rem;
+      color: var(--white) !important;
+      letter-spacing: -0.5px;
+    }
+    .navbar-brand span { color: var(--accent-light); }
+    .nav-link {
+      color: var(--text-muted) !important;
+      font-weight: 500;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem !important;
+      transition: color 0.3s;
+    }
+    .nav-link:hover, .nav-link.active-nav { color: var(--white) !important; }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 50%, var(--navy-light) 100%);
+      padding-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -50%; right: -20%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(37,99,235,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-name {
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      color: var(--white);
+    }
+    .hero-name span { color: var(--accent-light); }
+    .hero-title {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      margin: 1rem 0 1.5rem;
+    }
+    .hero-bio {
+      font-size: 0.97rem;
+      color: var(--text-light);
+      line-height: 1.85;
+      max-width: 530px;
+      opacity: 0.85;
+    }
+    .hero-img-wrapper { display: flex; justify-content: center; align-items: center; }
+    .hero-img {
+      width: 300px; height: 300px;
+      object-fit: cover;
+      object-position: top;
+      border-radius: 50%;
+      border: 4px solid var(--accent-light);
+      box-shadow: 0 0 40px rgba(37,99,235,0.3), 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    /* Buttons */
+    .btn-primary-custom {
+      background: var(--accent);
+      border: none;
+      color: white;
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+    .btn-primary-custom:hover {
+      background: var(--accent-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(37,99,235,0.4);
+      color: white;
+    }
+    .btn-outline-custom {
+      border: 2px solid var(--accent);
+      color: var(--accent-light);
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+      background: transparent;
+    }
+    .btn-outline-custom:hover {
+      background: var(--accent);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Social icons */
+    .social-links a {
+      color: var(--text-muted);
+      font-size: 1.3rem;
+      margin-right: 1.2rem;
+      transition: color 0.3s, transform 0.3s;
+      display: inline-block;
+    }
+    .social-links a:hover { color: var(--accent-light); transform: translateY(-3px); }
+
+    /* ── Sections ── */
+    section { padding: 90px 0; }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.5px;
+    }
+    .section-line {
+      width: 50px; height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin-bottom: 3rem;
+    }
+
+    /* ── About ── */
+    #about { background: var(--navy-mid); }
+    .about-card {
+      background: var(--navy);
+      border: 1px solid rgba(37,99,235,0.2);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+    .about-stat {
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--navy-mid);
+      border-radius: 12px;
+      border: 1px solid rgba(37,99,235,0.15);
+    }
+    .about-stat .number { font-size: 2rem; font-weight: 700; color: var(--accent-light); }
+    .about-stat .label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ── Experience ── */
+    #experience { background: var(--navy); }
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+    .timeline-item { position: relative; margin-bottom: 2.5rem; padding-left: 1.5rem; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.4rem; top: 0.4rem;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--navy);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.3);
+    }
+    .timeline-card {
+      background: var(--navy-mid);
+      border: 1px solid rgba(37,99,235,0.15);
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .timeline-card:hover { border-color: rgba(37,99,235,0.4); transform: translateX(4px); }
+    .timeline-role { font-size: 1.1rem; font-weight: 600; color: var(--white); }
+    .timeline-company { color: var(--accent-light); font-weight: 500; font-size: 0.95rem; }
+    .timeline-date {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      background: rgba(37,99,235,0.1);
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      display: inline-block;
+      margin: 0.5rem 0;
+    }
+    .timeline-card ul { margin: 0.5rem 0 0; padding-left: 1.2rem; }
+    .timeline-card ul li { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 0.3rem; }
+
+    /* ── Projects ── */
+    #projects { background: var(--navy-mid); }
+    .project-card {
+      background: var(--navy);
+      border: 1px solid rgba(37,99,235,0.15);
+      border-radius: 16px;
+      padding: 2rem;
+      height: 100%;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .project-card:hover {
+      border-color: rgba(37,99,235,0.4);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .project-card:hover::before { opacity: 1; }
+    .project-name { font-size: 1.15rem; font-weight: 600; color: var(--white); margin-bottom: 0.75rem; }
+    .project-desc { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.25rem; }
+    .tech-badge {
+      display: inline-block;
+      background: rgba(37,99,235,0.15);
+      color: var(--accent-light);
+      border: 1px solid rgba(37,99,235,0.3);
+      padding: 0.25rem 0.65rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      margin: 0.2rem;
+    }
+    .project-link {
+      color: var(--accent-light);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 1rem;
+      transition: gap 0.3s, color 0.3s;
+    }
+    .project-link:hover { color: var(--white); gap: 0.7rem; }
+
+    /* ── Skills ── */
+    #skills { background: var(--navy); }
+    .skill-group { margin-bottom: 2rem; }
+    .skill-group-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent-light);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 0.75rem;
+    }
+    .skill-badge {
+      display: inline-block;
+      background: var(--navy-mid);
+      color: var(--text-light);
+      border: 1px solid rgba(37,99,235,0.2);
+      padding: 0.4rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin: 0.2rem;
+      transition: all 0.2s;
+    }
+    .skill-badge:hover { background: rgba(37,99,235,0.2); border-color: var(--accent); color: var(--white); }
+
+    /* ── Leadership ── */
+    #leadership { background: var(--navy-mid); }
+    .leadership-card {
+      background: var(--navy);
+      border: 1px solid rgba(37,99,235,0.15);
+      border-radius: 14px;
+      padding: 1.75rem;
+      height: 100%;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .leadership-card:hover { border-color: rgba(37,99,235,0.4); transform: translateY(-4px); }
+    .leadership-icon {
+      width: 48px; height: 48px;
+      background: rgba(37,99,235,0.15);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: var(--accent-light);
+      margin-bottom: 1rem;
+    }
+    .leadership-title { font-size: 1rem; font-weight: 600; color: var(--white); margin-bottom: 0.5rem; }
+    .leadership-desc { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; }
+
+    /* ── Contact ── */
+    #contact { background: var(--navy); }
+    .contact-card {
+      background: var(--navy-mid);
+      border: 1px solid rgba(37,99,235,0.2);
+      border-radius: 16px;
+      padding: 2.5rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text-light);
+      transition: background 0.3s;
+      margin-bottom: 0.5rem;
+    }
+    .contact-item:hover { background: rgba(37,99,235,0.1); color: var(--white); }
+    .contact-item .icon-box {
+      width: 42px; height: 42px;
+      background: rgba(37,99,235,0.15);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-light);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .contact-label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+    .contact-value { font-size: 0.95rem; font-weight: 500; }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--navy-mid);
+      border-top: 1px solid rgba(37,99,235,0.1);
+      padding: 2rem 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--navy); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-name { font-size: 2.4rem; }
+      .hero-img { width: 220px; height: 220px; }
+      .hero-img-wrapper { margin-bottom: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navbar ── -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#hero">Arya <span>Hulloli</span></a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <i class="fas fa-bars" style="color:white;"></i>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+        <ul class="navbar-nav gap-1">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#leadership">Leadership</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section id="hero">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-7 order-2 order-lg-1" data-aos="fade-right">
+          <p style="color:var(--accent-light);font-size:0.85rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem;">Hi, I'm</p>
+          <h1 class="hero-name">Arya <span>Hulloli</span></h1>
+          <p class="hero-title">Software &amp; AI Engineer &nbsp;·&nbsp; University of Florida '26</p>
+          <p class="hero-bio">
+            Passionate Software &amp; AI Engineer specializing in machine learning and building scalable applications.
+            I continuously explore emerging technology to solve real-world problems, backed by a strong engineering
+            foundation at UF's Herbert Wertheim College of Engineering. Committed to continuous growth and excited
+            to take on new challenges every year.
+          </p>
+          <div class="d-flex gap-3 flex-wrap mt-4 mb-4">
+            <a href="#contact" class="btn-primary-custom">Get in Touch</a>
+            <a href="#projects" class="btn-outline-custom">View Projects</a>
+          </div>
+          <div class="social-links">
+            <a href="https://github.com/ahulloli" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/arya-hulloli-788a86302" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:aryahulloli@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-5 order-1 order-lg-2 hero-img-wrapper mb-5 mb-lg-0" data-aos="fade-left">
+          <img src="assets/profile.jpg" alt="Arya Hulloli" class="hero-img">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── About ── -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">About Me</h2>
+      <div class="section-line" data-aos="fade-up" data-aos-delay="100"></div>
+      <div class="row g-4">
+        <div class="col-lg-8" data-aos="fade-up" data-aos-delay="150">
+          <div class="about-card">
+            <p style="color:var(--text-light);line-height:1.9;font-size:1rem;">
+              I'm a <strong style="color:white;">Computer Science student</strong> at the University of Florida (Herbert Wertheim College of Engineering),
+              graduating May 2026 with a Minor in Economics and a <strong style="color:white;">3.78 GPA</strong>. I specialize in machine learning and AI engineering,
+              and I thrive at building scalable applications that solve real-world problems.
+            </p>
+            <br>
+            <p style="color:var(--text-muted);line-height:1.9;font-size:0.95rem;">
+              Beyond engineering, I was the <strong style="color:var(--accent-light);">Founder &amp; Captain of the Gator Club Basketball Team</strong>
+              and was recruited to scout for UF's Division I basketball program — a testament to my leadership and commitment to community.
+              I co-founded <strong style="color:var(--accent-light);">CompetitorsOnly</strong>, a non-profit startup helping students of all schedules
+              succeed academically, and partnered with elite tutors to lecture and inspire others in AI, ML, and STEM.
+            </p>
+            <br>
+            <p style="color:var(--text-muted);line-height:1.9;font-size:0.95rem;">
+              <strong style="color:var(--accent-light);">Awards:</strong>&nbsp; Florida Bright Futures Scholar &nbsp;·&nbsp; Herbert Wertheim College of Engineering Dean's List
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="250">
+          <div class="row g-3">
+            <div class="col-6">
+              <div class="about-stat">
+                <div class="number">3.78</div>
+                <div class="label">GPA</div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="about-stat">
+                <div class="number">3+</div>
+                <div class="label">Internships</div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="about-stat">
+                <div class="number">250+</div>
+                <div class="label">Extension Users</div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="about-stat">
+                <div class="number">10M+</div>
+                <div class="label">Data Points</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Experience ── -->
+  <section id="experience">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Experience</h2>
+      <div class="section-line" data-aos="fade-up" data-aos-delay="100"></div>
+      <div class="timeline" data-aos="fade-up" data-aos-delay="150">
+
+        <div class="timeline-item">
+          <div class="timeline-card">
+            <div class="timeline-role">AI Research Assistant</div>
+            <div class="timeline-company">Data Driven Humanities Research Group</div>
+            <span class="timeline-date">Aug 2025 – Present</span>
+            <ul>
+              <li>Engineered distributed NLP and ETL pipelines on 10M+ multilingual samples using Spark and Docker/Kubernetes, improving preprocessing efficiency by 25% and sustaining 92% model accuracy.</li>
+              <li>Developed reproducible end-to-end ML pipelines with Docker and Kubernetes, increasing deployment consistency by 20% and enabling scalable analytics experiments.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-card">
+            <div class="timeline-role">Software / AI Engineering Intern</div>
+            <div class="timeline-company">MDVIP &nbsp;·&nbsp; Boca Raton, FL</div>
+            <span class="timeline-date">May 2025 – Aug 2025</span>
+            <ul>
+              <li>Designed and deployed an AI-powered RSVP model processing 1,600+ events using LLMs to predict patient attendance at doctor-led events, achieving up to 80% accuracy.</li>
+              <li>Automated data query and ingestion pipelines in Python for an Auto Credit updater querying 1.2M+ credit cards, improving membership renewal rate by 40% for 480,000+ members.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-card">
+            <div class="timeline-role">Teaching / Research Assistant</div>
+            <div class="timeline-company">University of Florida &nbsp;·&nbsp; Gainesville, FL</div>
+            <span class="timeline-date">Aug 2024 – Dec 2024</span>
+            <ul>
+              <li>Simulated international arms control strategies, balancing cooperation and defection.</li>
+              <li>Developed Python-based simulation using Matplotlib and scikit-learn.</li>
+              <li>Collaborated with PhD and master's students, employing Git for version control.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-card">
+            <div class="timeline-role">Software Engineering Intern</div>
+            <div class="timeline-company">Neudesic &nbsp;·&nbsp; Irvine, CA</div>
+            <span class="timeline-date">May 2024 – Aug 2024</span>
+            <ul>
+              <li>Deployed and scaled Azure-based visualization services contributing to Neudesic's Digital Workforce Management platform for organizing AI "digital workers."</li>
+              <li>Partnered with PMs and Senior Engineers in Agile sprints, performed code reviews and expanded unit tests, sustaining 99.9% pipeline reliability via Git-based workflows.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-card">
+            <div class="timeline-role">Sports Associate</div>
+            <div class="timeline-company">YMCA</div>
+            <span class="timeline-date">Prior Experience</span>
+            <ul>
+              <li>Constructed drills, practices, and gameplans for athletes across all age groups.</li>
+              <li>Developed and led structured athletic programs, fostering teamwork, discipline, and skill development in a community-focused environment.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Projects ── -->
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Projects</h2>
+      <div class="section-line" data-aos="fade-up" data-aos-delay="100"></div>
+      <div class="row g-4">
+
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="project-card">
+            <div class="project-name">Basketball Fantasy &amp; Stats App</div>
+            <p class="project-desc">Full-stack fantasy league platform with customizable rules, drafts, real-time messaging, and scouting. React-based UI backed by a SQL API with secure authentication and live updates.</p>
+            <div>
+              <span class="tech-badge">React.js</span>
+              <span class="tech-badge">Node.js</span>
+              <span class="tech-badge">AWS</span>
+              <span class="tech-badge">Azure</span>
+              <span class="tech-badge">C#</span>
+              <span class="tech-badge">ASP.NET</span>
+            </div>
+            <a href="https://github.com/ahulloli/basketballapp" target="_blank" class="project-link">
+              <i class="fab fa-github"></i> View on GitHub <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-card">
+            <div class="project-name">Semantic Search Extension</div>
+            <p class="project-desc">Published Chrome Web Store extension with 250+ users for intelligent text analysis and Q&amp;A. React frontend with a Cloudflare Worker backend powered by OpenAI GPT-4o.</p>
+            <div>
+              <span class="tech-badge">React.js</span>
+              <span class="tech-badge">Node.js</span>
+              <span class="tech-badge">Firebase</span>
+              <span class="tech-badge">Cloudflare</span>
+              <span class="tech-badge">OpenAI</span>
+            </div>
+            <a href="https://github.com/ahulloli/semantic-search/tree/main" target="_blank" class="project-link">
+              <i class="fab fa-github"></i> View on GitHub <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="project-card">
+            <div class="project-name">Tune Twins – AI Song Cover Platform</div>
+            <p class="project-desc">REST API for retrieval-based voice conversion enabling personalized AI song covers. Pipeline processes 100,000+ songs with YouTube integration, vocal separation, and AI synthesis.</p>
+            <div>
+              <span class="tech-badge">Python</span>
+              <span class="tech-badge">Flask</span>
+              <span class="tech-badge">CockroachDB</span>
+              <span class="tech-badge">AI/ML</span>
+            </div>
+            <a href="https://github.com/ahulloli/Tune-Twins" target="_blank" class="project-link">
+              <i class="fab fa-github"></i> View on GitHub <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Skills ── -->
+  <section id="skills">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Skills</h2>
+      <div class="section-line" data-aos="fade-up" data-aos-delay="100"></div>
+      <div class="row g-4" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-lg-4">
+          <div class="skill-group">
+            <div class="skill-group-title">Languages</div>
+            <span class="skill-badge">Python</span>
+            <span class="skill-badge">JavaScript</span>
+            <span class="skill-badge">TypeScript</span>
+            <span class="skill-badge">C++</span>
+            <span class="skill-badge">C#</span>
+            <span class="skill-badge">Java</span>
+            <span class="skill-badge">MATLAB</span>
+            <span class="skill-badge">x86</span>
+            <span class="skill-badge">HTML / CSS</span>
+            <span class="skill-badge">SQL</span>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="skill-group">
+            <div class="skill-group-title">Frameworks &amp; Tools</div>
+            <span class="skill-badge">React.js</span>
+            <span class="skill-badge">Node.js</span>
+            <span class="skill-badge">Flask</span>
+            <span class="skill-badge">Express.js</span>
+            <span class="skill-badge">ASP.NET</span>
+            <span class="skill-badge">Firebase</span>
+            <span class="skill-badge">MongoDB</span>
+            <span class="skill-badge">PostgreSQL</span>
+            <span class="skill-badge">Docker</span>
+            <span class="skill-badge">Kubernetes</span>
+            <span class="skill-badge">AWS</span>
+            <span class="skill-badge">Azure</span>
+            <span class="skill-badge">PyTorch</span>
+            <span class="skill-badge">Pandas</span>
+            <span class="skill-badge">Hugging Face</span>
+            <span class="skill-badge">scikit-learn</span>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="skill-group">
+            <div class="skill-group-title">Other</div>
+            <span class="skill-badge">Machine Learning</span>
+            <span class="skill-badge">NLP</span>
+            <span class="skill-badge">Agile</span>
+            <span class="skill-badge">Git / GitHub</span>
+            <span class="skill-badge">Spark</span>
+            <span class="skill-badge">Data Analysis</span>
+            <span class="skill-badge">Data Visualization</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Leadership ── -->
+  <section id="leadership">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Leadership &amp; Activities</h2>
+      <div class="section-line" data-aos="fade-up" data-aos-delay="100"></div>
+      <div class="row g-4">
+
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="leadership-card">
+            <div class="leadership-icon"><i class="fas fa-basketball-ball"></i></div>
+            <div class="leadership-title">Founder &amp; Captain — Gator Club Basketball</div>
+            <p class="leadership-desc">Founded and led UF's Gator Club Basketball team. Recruited to scout for UF's Division I basketball program, demonstrating elite-level basketball IQ and leadership.</p>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="150">
+          <div class="leadership-card">
+            <div class="leadership-icon"><i class="fas fa-lightbulb"></i></div>
+            <div class="leadership-title">Co-Founder — CompetitorsOnly (Non-Profit)</div>
+            <p class="leadership-desc">Co-founded a non-profit startup helping students of all schedules succeed academically. Partnered with elite tutors to lecture and inspire people in AI, ML, and STEM.</p>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="leadership-card">
+            <div class="leadership-icon"><i class="fas fa-dumbbell"></i></div>
+            <div class="leadership-title">Sports Associate — YMCA</div>
+            <p class="leadership-desc">Constructed drills, practices, and gameplans for athletes of all ages, fostering teamwork, discipline, and athletic growth in a community-focused environment.</p>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="250">
+          <div class="leadership-card">
+            <div class="leadership-icon"><i class="fas fa-laptop-code"></i></div>
+            <div class="leadership-title">UF Clubs</div>
+            <p class="leadership-desc">Active member of UF ACM, Open-Source Club, AI Club, and Cloud Computing Club — staying at the forefront of tech and contributing to the engineering community.</p>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="leadership-card">
+            <div class="leadership-icon"><i class="fas fa-whistle"></i></div>
+            <div class="leadership-title">UF Referee &amp; Scout Team</div>
+            <p class="leadership-desc">Served as a UF Referee and member of the Gators Club Basketball Scout Team, contributing to game analysis and officiating at the collegiate level.</p>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="350">
+          <div class="leadership-card">
+            <div class="leadership-icon"><i class="fas fa-trophy"></i></div>
+            <div class="leadership-title">Awards</div>
+            <p class="leadership-desc">Florida Bright Futures Scholar and Herbert Wertheim College of Engineering Dean's List — recognizing academic excellence and merit-based achievement.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contact ── -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Get in Touch</h2>
+      <div class="section-line" data-aos="fade-up" data-aos-delay="100"></div>
+      <div class="row justify-content-center">
+        <div class="col-lg-7" data-aos="fade-up" data-aos-delay="150">
+          <div class="contact-card">
+            <p style="color:var(--text-muted);margin-bottom:2rem;font-size:1rem;line-height:1.8;">
+              I'm actively seeking full-time Software &amp; AI Engineering roles starting Summer 2026.
+              Whether you have an opportunity or just want to connect — feel free to reach out!
+            </p>
+            <a href="mailto:aryahulloli@gmail.com" class="contact-item">
+              <div class="icon-box"><i class="fas fa-envelope"></i></div>
+              <div>
+                <div class="contact-label">Email</div>
+                <div class="contact-value">aryahulloli@gmail.com</div>
+              </div>
+            </a>
+            <a href="tel:8654569806" class="contact-item">
+              <div class="icon-box"><i class="fas fa-phone"></i></div>
+              <div>
+                <div class="contact-label">Phone</div>
+                <div class="contact-value">(865) 456-9806</div>
+              </div>
+            </a>
+            <a href="https://linkedin.com/in/arya-hulloli-788a86302" target="_blank" class="contact-item">
+              <div class="icon-box"><i class="fab fa-linkedin"></i></div>
+              <div>
+                <div class="contact-label">LinkedIn</div>
+                <div class="contact-value">linkedin.com/in/arya-hulloli-788a86302</div>
+              </div>
+            </a>
+            <a href="https://github.com/ahulloli" target="_blank" class="contact-item">
+              <div class="icon-box"><i class="fab fa-github"></i></div>
+              <div>
+                <div class="contact-label">GitHub</div>
+                <div class="contact-value">github.com/ahulloli</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Arya Hulloli &nbsp;·&nbsp; Software &amp; AI Engineer</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 700, once: true, offset: 80 });
+
+    // Navbar shadow on scroll
+    window.addEventListener('scroll', () => {
+      document.querySelector('.navbar').style.boxShadow =
+        window.scrollY > 50 ? '0 4px 20px rgba(0,0,0,0.3)' : 'none';
+    });
+
+    // Active nav highlight
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 120) current = s.id;
+      });
+      navLinks.forEach(l => {
+        l.classList.toggle('active-nav', l.getAttribute('href') === `#${current}`);
+      });
+    });
+  </script>
+</body>
+</html>
